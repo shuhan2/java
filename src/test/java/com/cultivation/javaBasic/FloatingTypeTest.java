@@ -11,11 +11,11 @@ class FloatingTypeTest {
     @Test
     void should_not_get_rounded_result_if_convert_floating_number_to_integer() {
         final float floatingPointNumber = 2.75f;
-        final int integer = (int)floatingPointNumber;
+        final int integer = (int) floatingPointNumber;
 
         // TODO: Please change the result to pass the test.
         // <!--start
-        final int expected = Integer.MAX_VALUE;
+        final int expected = 2;
         // --end-->
 
         assertEquals(expected, integer);
@@ -37,14 +37,15 @@ class FloatingTypeTest {
     @Test
     void should_not_round_number_when_convert_to_integer() {
         final float floatingPointNumber = 2.75f;
-        final int integer = (int)floatingPointNumber;
+        final int integer = (int) floatingPointNumber;
 
         // TODO: Please change the result to pass the test.
         // <!--start
-        final int expected = Integer.MAX_VALUE;
+        final int expected = 2;
         // --end-->
 
         assertEquals(expected, integer);
+
     }
 
     @SuppressWarnings("unused")
@@ -54,7 +55,7 @@ class FloatingTypeTest {
 
         // TODO: Please call some method to round the floating point number.
         // <!--start
-        final long rounded = Long.MAX_VALUE;
+        final long rounded = Math.round(floatingPointNumber);
         // --end-->
 
         assertEquals(3L, rounded);
@@ -63,19 +64,22 @@ class FloatingTypeTest {
     @SuppressWarnings("unused")
     private boolean isNan(double realNumber) {
         // TODO: please implement the method to pass the test.
-        throw new NotImplementedException();
+        return Double.isNaN(realNumber);
     }
 
     @SuppressWarnings("unused")
     private boolean isInfinity(double realNumber) {
-        // TODO: please implement the method to pass the test.
-        throw new NotImplementedException();
-    }
+        // TODO: please implement the method to pass the test.//
+        if (Double.isNaN(realNumber)) {
+            return false;
+        }
+        return !Double.isFinite(realNumber);
 
-    /*
-     * The coach should ask the following questions for the correspond test method:
-     *
-     * - Can we compare NaN using == directly?
-     * - Can we compare XXX_INFINITY using == directly?
-     */
+        /*
+         * The coach should ask the following questions for the correspond test method:
+         *
+         * - Can we compare NaN using == directly?
+         * - Can we compare XXX_INFINITY using == directly?
+         */
+    }
 }
