@@ -25,18 +25,68 @@ class IntegerTypeTest {
     }
 
     @Test
+    void should_return_negative_int_type() {
+        final int number1 = 0xffffffff;
+        final int result1 = -1;
+
+        final int number2 =0x80000001;
+        final int result2 = Integer.MIN_VALUE + 1;
+
+        final int number3 =0x0000000;
+        final int result3= 0;
+
+        final int number4 = 0x7fffffff;
+        final int result4 = Integer.MAX_VALUE;
+
+        final int number5 =0x0000001;
+        final int result5= 1;
+
+        assertEquals(result1, number1);
+        assertEquals(result2, number2);
+        assertEquals(result3, number3);
+        assertEquals(result4, number4);
+        assertEquals(result5, number5);
+
+    }
+
+    @Test
+    void should_return_symbol_int_type() {
+        for (int i = Integer.MIN_VALUE; i < 0; i++) {
+            assertEquals(1,i >>> 31);
+        }
+
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            assertEquals(0,i >>> 31);
+        }
+
+        for (int i = 0; i < 31; i++) {
+            assertEquals(true,(1 << i) >= 0);
+        }
+
+        assertEquals(-Math.pow(2,31),0x80000000 >>> 32);
+        assertEquals(0xC0000004,0x80000008 >> 1);
+        assertEquals(0x40000004,0x80000008 >>> 1);
+    }
+
+    @Test
+    void should_right_symbol() {
+       assertEquals(0x00200000,0x00100000 << 1);
+    }
+
+    @Test
     void should_get_range_of_primitive_short_type() {
         final short maximum = 32767;
         final short minimum = -32768;
-
         // TODO: You should not write concrete number here. Please find a property or constant instead.
         // <!--start
         final short maximumSymbol = Short.MAX_VALUE;
         final short minimumSymbol = Short.MIN_VALUE;
         // --end-->
-
+        final short minimumDecimal = -0x8000;
+        final short minimumShort = (short)0x8000;
         assertEquals(maximumSymbol, maximum);
         assertEquals(minimumSymbol, minimum);
+        assertEquals(minimumDecimal, minimum);
     }
 
     @Test
@@ -59,7 +109,8 @@ class IntegerTypeTest {
     void should_get_range_of_primitive_byte_type() {
         final byte maximum = 127;
         final byte minimum = -128;
-
+        final byte miniHex = -0x80;
+        final byte miniShort = (byte)0x80;
         // TODO: You should not write concrete number here. Please find a property or constant instead.
         // <!--start
         final byte maximumSymbol = Byte.MAX_VALUE;
@@ -74,10 +125,9 @@ class IntegerTypeTest {
     void should_overflow_silently() {
         int theNumberWillOverflow = Integer.MAX_VALUE;
         ++theNumberWillOverflow;
-
         // TODO: Please correct the value to pass the test.
         // <--start
-        final int expectedResult = Integer.MIN_VALUE;
+        final int expectedResult = Integer.MIN_VALUE ;
         // --end-->
 
         assertEquals(expectedResult, theNumberWillOverflow);
@@ -100,8 +150,12 @@ class IntegerTypeTest {
     @Test
     void should_throw_exception_when_overflow() {
         int theNumberWillOverflow = Integer.MAX_VALUE;
-
         assertThrows(ArithmeticException.class, () -> add(theNumberWillOverflow, 1));
+    }
+
+    @Test
+    void should_throw_exception_when_not_try_catch() {
+
     }
 
     @Test
@@ -135,6 +189,15 @@ class IntegerTypeTest {
         final short expected = 0x4567;
         // --end-->
 
+        assertEquals(expected, smallerInteger);
+    }
+
+    @Test
+    void should_truncate_symbol_when_casting() {
+        final int integer = 0x8000_0001;
+        final short smallerInteger = (short)integer;
+
+        final short expected = 0x0001;
         assertEquals(expected, smallerInteger);
     }
 
@@ -173,7 +236,7 @@ class IntegerTypeTest {
     private int add(int left, int right) throws  NotImplementedException{
         // TODO: Please implement the method. Adding two numbers.
         // The method should throw ArithmeticException if overflow or underflow happens.
-        return Math.addExact(left,right);
+        return Math.addExact(left, right);
     }
 
     /*

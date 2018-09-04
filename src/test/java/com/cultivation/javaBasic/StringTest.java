@@ -1,5 +1,6 @@
 package com.cultivation.javaBasic;
 
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 import org.junit.jupiter.api.Test;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -7,6 +8,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class StringTest {
     @SuppressWarnings({"StringEquality", "ConstantConditions"})
@@ -19,7 +21,7 @@ class StringTest {
         //
         // It is really easy to pass the test. But you have to tell why.
         // <--start
-        final Optional<Boolean> areSame = Optional.empty();
+        final Optional<Boolean> areSame =Optional.of(false);
         // --end-->
 
         assertEquals("The new string", modifiedString);
@@ -29,7 +31,7 @@ class StringTest {
     @SuppressWarnings({"StringEquality", "ConstantConditions"})
     @Test
     void all_modification_method_will_create_new_string() {
-        String originalString = "The string with tailing space.     ";
+        String originalString = "The string with tailing space.";
         String modifiedString = originalString.trim();
 
         // TODO: Please modify the following line to pass the test.

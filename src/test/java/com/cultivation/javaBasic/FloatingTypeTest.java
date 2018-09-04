@@ -48,6 +48,53 @@ class FloatingTypeTest {
 
     }
 
+    @Test
+    void should_test_convert_type() {
+        byte tempByte = 1;
+        short tempShort = 1;
+        int tempInteger = 1000000;
+        long tempLong = 1L;
+        float tempFloat = 1.2f;
+        double tempDouble = 1.2d;
+
+        short shortNumber1 =tempByte;
+        int integer1 = tempByte;
+        long longNumber = tempByte;
+        float floatNumber = tempByte;
+        double  doubleNumber = tempByte;
+
+        byte byteNumber2 = (byte) tempShort;
+        int integer2 = tempShort;
+        long longNumber2 = tempShort;
+        float floatNumber2 = tempShort;
+        double doubleNumber2 = tempShort;
+
+        byte byteNumber3 = (byte)tempInteger;
+        short shortNumber3 = (short)tempInteger;
+        long longNumber3 = tempInteger;
+        float floatNumber3 = tempInteger;
+        double doubleNumber3 = tempInteger;
+
+        byte byteNumber4 = (byte)tempLong;
+        short shortNumber4 = (short)tempLong;
+        int integer4 = (int)tempLong;
+        float floatNumber4 = tempLong;
+        double doubleNumber4 = tempLong;
+
+        byte byteNumber5 = (byte)tempFloat;
+        short shortNumber5 = (short)tempFloat;
+        int integer5 = (int)tempFloat;
+        long longNumber5 = (long)tempFloat;
+        double doubleNumber5 = tempFloat;
+
+        byte byteNumber6 = (byte)tempDouble;
+        short shortNumber6 = (short)tempDouble;
+        int integer6 = (int)tempDouble;
+        long longNumber6 = (long)tempDouble;
+        float floatNumber6 = (float)tempDouble;
+
+    }
+
     @SuppressWarnings("unused")
     @Test
     void should_round_number() {
@@ -67,14 +114,18 @@ class FloatingTypeTest {
         return Double.isNaN(realNumber);
     }
 
+    @Test
+    void should_return_false_when_compare_two_Nan() {
+        assertFalse(Double.NaN == Double.NaN);
+    }
+
     @SuppressWarnings("unused")
     private boolean isInfinity(double realNumber) {
         // TODO: please implement the method to pass the test.//
-        if (Double.isNaN(realNumber)) {
-            return false;
-        }
-        return !Double.isFinite(realNumber);
-
+//        if (Double.isNaN(realNumber)) {
+//            return false;
+//        }
+        return Double.isInfinite(realNumber);
         /*
          * The coach should ask the following questions for the correspond test method:
          *

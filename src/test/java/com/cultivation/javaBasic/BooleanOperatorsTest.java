@@ -24,15 +24,14 @@ class BooleanOperatorsTest {
             true | false,
             false | false,
             3 == 7,
-            4 != 5
+            4 != 5,
+                (double) 1 == (float)1,
+
         };
 
         // TODO: please modify the following code to pass the test
         // <--start
-        boolean[] expectedResult = {true,
-                                    false,
-                                    false,
-                                    true,
+        boolean[] expectedResult = {true, false, false, true,
                                     true,
                                     false,
                                     true,
@@ -42,9 +41,9 @@ class BooleanOperatorsTest {
                                     true,
                                     false,
                                     false,
-                                    true};
+                                    true,true,true};
         // --end-->
-
+        assertEquals(1.0,1);
         assertArrayEquals(expectedResult, actualResults);
     }
 
