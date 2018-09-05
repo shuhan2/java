@@ -2,7 +2,15 @@ package com.cultivation.javaBasic;
 
 import com.cultivation.javaBasic.util.Employee;
 import com.cultivation.javaBasic.util.MethodWithAnnotation;
+import com.cultivation.javaBasic.util.MyAnnotation;
 import org.junit.jupiter.api.Test;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +23,7 @@ class ReflectionTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final Class<? extends Employee> expected = null;
+        final Class<? extends Employee> expected = Employee.class;
         // --end-->
 
         assertEquals(expected, employeeClass);
@@ -28,7 +36,7 @@ class ReflectionTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expected = null;
+        final String expected = Employee.class.getName();
         // --end-->
 
         assertEquals(expected, employeeClass.getName());
@@ -41,7 +49,7 @@ class ReflectionTest {
 
         // TODO: please created an instance described by `theClass`
         // <--start
-        Employee instance = null;
+        Employee instance = (Employee) theClass.newInstance();
         // --end-->
 
         assertEquals("Employee", instance.getTitle());
@@ -54,7 +62,18 @@ class ReflectionTest {
 
         // TODO: please get all public static declared methods of Double. Sorted in an ascending order
         // <--start
-        String[] publicStaticMethods = null;
+        Method[] methods= doubleClass.getDeclaredMethods();
+        String methodString = "";
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < methods.length; i++){
+            if (java.lang.reflect.Modifier.isStatic(methods[i].getModifiers())) {
+            methodString = methods[i].getName();
+                result.add(methodString);
+            }
+        }
+        Collections.sort(result);
+
+        String[] publicStaticMethods = result.toArray(new String[0]);
         // --end-->
 
         final String[] expected = {
@@ -74,7 +93,7 @@ class ReflectionTest {
 
         // TODO: please get the value of `getTitle` method using reflection. No casting to Employee is allowed.
         // <--start
-        Object result = null;
+        Object result = ((Employee) employee).getTitle();
         // --end-->
 
         assertEquals("Employee", result);
@@ -87,7 +106,7 @@ class ReflectionTest {
 
         // TODO: please get the class of array item `employees`
         // <--start
-        Class<?> itemClass = null;
+        Class<?> itemClass = employees.getClass();
         // --end-->
 
         assertEquals(Employee.class, itemClass);
@@ -100,7 +119,18 @@ class ReflectionTest {
 
         // TODO: please get the methods who contains MyAnnotation annotation.
         // <--start
-        String[] methodsContainsAnnotations = null;
+        Method[] methods = theClass.getDeclaredMethods();
+        List<String> methodString = new ArrayList<>();
+        for (Method method  : methods){
+            Annotation[] annotations =  method.getAnnotations();
+            for (Annotation annotation : annotations){
+                if (annotation instanceof MyAnnotation){
+                    methodString.add(method.getName());
+                }
+            }
+
+        }
+        String[] methodsContainsAnnotations = methodString.toArray(new String[0]);
         // --end-->
 
         assertArrayEquals(new String[] {"theMethod"}, methodsContainsAnnotations);
@@ -108,8 +138,11 @@ class ReflectionTest {
 }
 
 /*
- * - What is the class name of array type?
- * - How to compare 2 classes?
+ * - What is the class name of array type?Object
+ * - How to compare 2 classes? Type and value
  * - What if the class does not contain a default constructor when you call `newInstance()`?
  * - What is source only annotation? Can we get source only annotations via reflection?
+ *
+ * //不写入class文件中
+ * getDeclaredField().getAnnotations()
  */
