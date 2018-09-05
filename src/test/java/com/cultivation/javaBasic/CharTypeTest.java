@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CharTypeTest {
     @Test
-    void should_describe_escaped_chars() {
+    void should_describe_escaped_chars(){
         // TODO: please modify the following code to pass the test
         // <--start
         final char backspace = '\b';

@@ -2,8 +2,7 @@ package com.cultivation.javaBasic;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BooleanOperatorsTest {
 
@@ -41,7 +40,7 @@ class BooleanOperatorsTest {
                                     true,
                                     false,
                                     false,
-                                    true,true,true};
+                                    true,true};
         // --end-->
         assertEquals(1.0,1);
         assertArrayEquals(expectedResult, actualResults);
@@ -83,5 +82,52 @@ class BooleanOperatorsTest {
         // --end-->
 
         assertEquals(expected, ~value);
+    }
+
+    @Test
+    void should_not_prior_and() {
+        int value = ~ 0x0000_1234 & 0xffff_0000;
+        int not_prior_and_result = 0xffff_0000;
+        int and_prior_not_result = 0xffff_ffff;
+        assertEquals(not_prior_and_result,value);
+        assertNotEquals(and_prior_not_result,value);
+
+    }
+
+    @Test
+    void should_not_prior_or() {
+        int value =  ~0x0000_1111 | 0x1234_1111;
+        int not_prior_or = 0xffff_ffff;
+        int or_prior_not_result = 0xedcb_eeee;
+        assertEquals(not_prior_or,value);
+        assertNotEquals(or_prior_not_result,value);
+
+    }
+
+    @Test
+    void should_and_prior_or() {
+        int value =  0x0000_1111 | 0x1234_1111 & 0xfff0_2222;
+        int and_prior_or_result = 0x1230_1111;
+        int or_prior_and_result = 0x1230_0000;
+
+        assertEquals(and_prior_or_result,value);
+        assertNotEquals(or_prior_and_result,value);
+    }
+
+    @Test
+    void should_test_boolean() {
+        boolean test;
+      //  assertFalse(test);
+    }
+    @Test
+    void should_test_int() {
+        int test;
+        //  assertEquals(0,test);
+    }
+    @Test
+    void should_test_int_array() {
+        int[] ints = new int[6];
+        assertEquals(0,ints[0]);
+
     }
 }

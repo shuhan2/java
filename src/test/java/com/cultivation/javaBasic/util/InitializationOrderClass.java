@@ -26,6 +26,10 @@ public class InitializationOrderClass {
         logger.add("Initialization Block");
     }
 
+    {
+        logger.add("Initialization Block2");
+    }
+
     public InitializationOrderClass() {
         this(4);
         logger.add("Default constructor");

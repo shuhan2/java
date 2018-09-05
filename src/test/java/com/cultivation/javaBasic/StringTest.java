@@ -324,12 +324,11 @@ class StringTest {
         //todo  for circle
         int length = withSurrogatePairs.codePointCount(0,withSurrogatePairs.length());
         int[] result = new int[length];
-        for (int i = 0; i < length; i++) {
-            if (i == 0) {
-                result[i] = withSurrogatePairs.codePointAt(i);
-            }else {
-                result[i] = withSurrogatePairs.codePointAt(i + 1);
-
+        int index =0;
+        for (int i = 0; i <= length; i++) {
+            result[ index++] = withSurrogatePairs.codePointAt(i);
+            if (withSurrogatePairs.codePointAt(i) > 65536) {
+                i++;
             }
         }
 

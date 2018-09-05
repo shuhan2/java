@@ -63,7 +63,7 @@ class FloatingTypeTest {
         float floatNumber = tempByte;
         double  doubleNumber = tempByte;
 
-        byte byteNumber2 = (byte) tempShort;
+        byte byteNumber2 = (byte)tempShort;
         int integer2 = tempShort;
         long longNumber2 = tempShort;
         float floatNumber2 = tempShort;

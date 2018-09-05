@@ -53,7 +53,6 @@ public class MyStack {
         while (count > 0) {
             array[totalItemsCount - count] = pop();
         }
-
         return array;
     }
 
@@ -61,8 +60,10 @@ public class MyStack {
         // TODO: Please pop one element from the array.
         // <--start
         return storage[ --count];
-//        if (storage.length == 0){
         // --end-->
 
     }
+
+
+
 }

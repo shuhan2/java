@@ -22,4 +22,10 @@ class ArrayTest {
             array
         );
     }
+
+    @Test
+    void should_test_array_length() {
+        int[] array = new int[10];
+//        array.length =20;
+    }
 }
