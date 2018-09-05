@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ObjectTest {
     @SuppressWarnings({"UnnecessaryLocalVariable", "ConstantConditions"})
@@ -15,12 +16,13 @@ class ObjectTest {
     void should_point_to_the_same_object() {
         Object objectReference = new Object();
         Object sameReference = objectReference;
-
+        //priority
+        // https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html
         final boolean referenceToSameObject = objectReference == sameReference;
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final Optional<Boolean> expected = Optional.empty();
+        final Optional<Boolean> expected = Optional.of(true);
         // --end-->
 
         assertEquals(expected.get(), referenceToSameObject);
@@ -36,7 +38,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final Optional<Boolean> expected = Optional.empty();
+        final Optional<Boolean> expected = Optional.of(false);
         // --end-->
 
         assertEquals(expected.get(), referenceToSameObject);
@@ -49,9 +51,10 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expectedName = "What";
-        final int expectedYearOfBirth = 479;
-        final LocalDate expectedRegisteredDate = LocalDate.now();
+
+        final String expectedName = null;
+        final int expectedYearOfBirth = 0;
+        final LocalDate expectedRegisteredDate = null;
         // --end-->
 
         assertEquals(expectedName, instance.getName());
@@ -67,7 +70,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final int expected = 0;
+        final int expected = 5;
         // --end-->
 
         assertEquals(expected, value);
@@ -89,7 +92,7 @@ class ObjectTest {
         // TODO: please modify the following code to pass the test.
         // You can only choose from `sameReference` and `instanceCreatedByMethod`
         // <--start
-        final Object expected = null;
+        final Object expected = sameReference;
         // --end-->
 
         assertEquals(expected, objectReference);
@@ -103,7 +106,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expected = null;
+        final String expected = "Updated Name";
         // --end-->
 
         assertEquals(expected, instance.getName());
@@ -117,7 +120,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test. You should write the result directly.
         // <--start
-        final String expected = null;
+        final String expected = "methodWithOneParameter(Object)";
         // --end-->
 
         assertEquals(expected, actual);
@@ -133,7 +136,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test. You should write the result directly.
         // <--start
-        final String expected = null;
+        final String expected = "methodWithTwoParameters(String, Integer)";
         // --end-->
 
         assertEquals(expected, actual);
@@ -145,7 +148,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expected = null;
+        final String expected = "Untitled";
         // --end-->
 
         assertEquals(expected, instance.getName());
@@ -160,7 +163,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String[] expected = {};
+        final String[] expected = {"Field Initializer","Initialization Block","Constructor with argument","Default constructor"};
         // --end-->
 
         assertArrayEquals(expected, logs);
@@ -172,7 +175,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expected = null;
+        final String expected = "1\n2\n3\n";
         // --end-->
 
         assertEquals(expected, message);
@@ -186,7 +189,7 @@ class ObjectTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expected = null;
+        final String expected = "1\n2\n3\n";
         // --end-->
 
         assertEquals(expected, message);
@@ -213,13 +216,15 @@ class ObjectTest {
 }
 
 /*
- * - What does == means for objects.
- * - If there is no explicitly defined constructor, will compiler create one for you?
+ * - What does == means for objects.        references hashcode and address，the same object
+ * https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html#equals-java.lang.Object-
+ * https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
+ * - If there is no explicitly(clearly) defined constructor, will compiler create one for you? Yes
  * - If there is at least one explicitly defined non-default constructor. Will compiler create a default constructor
- *   for you?
+ *   for you? no
  * - What is the access privilege for method in class marked as `public`, `private`, `protected` and not mark at all.
- * - What is package private?
+ * - What is package private? https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html
  * - When java program contains dependencies. How to reference those dependencies when executing the program? (The
  *   -classpath command line argument).
- * - What if we call `getMessageOfVarLengthParameters("Good", new Object[] {1, 2, 3});`
+ * - What if we call `getMessageOfVarLengthParameters("Good", new Object[] {1, 2, 3});`mix get set
  */
