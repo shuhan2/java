@@ -9,7 +9,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 class InheritanceTest {
+    private DerivedFromBaseClassForOverridingCallingSuper instance;
 
+    //invoked调用
     @Test
     void should_be_derived_from_object_class() {
         // TODO: please modify the following code to pass the test
@@ -37,7 +39,8 @@ class InheritanceTest {
     @Test
     void should_call_super_class_constructor_continued() {
         DerivedFromSuperClassWithDefaultConstructor instance = new DerivedFromSuperClassWithDefaultConstructor(42);
-
+        DerivedFromSuperClassWithDefaultConstructor.test();
+        assertEquals(1,1);
         // TODO: please modify the following code to pass the test
         // <--start
         final String[] expected = {"SuperClassWithDefaultConstructor.constructor()","DerivedFromSuperClassWithDefaultConstructor.constructor()","DerivedFromSuperClassWithDefaultConstructor.constructor(int)"};
@@ -51,6 +54,7 @@ class InheritanceTest {
     @Test
     void should_call_super_class_constructor_more() {
         DerivedFromSuperClassWithDefaultConstructor instance = new DerivedFromSuperClassWithDefaultConstructor("God");
+        System.out.println(instance.getClass());
 
         // TODO: please modify the following code to pass the test
         // <--start
@@ -65,7 +69,6 @@ class InheritanceTest {
     @Test
     void should_call_most_derived_methods() {
         BaseClassForOverriding instance = new DerivedFromBaseClassForOverriding();
-
         // TODO: please modify the following code to pass the test
         // <--start
         final String expectedName = "DerivedFromBaseClassForOverriding";
@@ -92,7 +95,6 @@ class InheritanceTest {
     void should_use_caution_when_dealing_with_array_type() {
         DerivedFromSuperClassWithDefaultConstructor[] array = new DerivedFromSuperClassWithDefaultConstructor[4];
         SuperClassWithDefaultConstructor[] arrayWithBaseType = (SuperClassWithDefaultConstructor[])array;
-
         boolean willThrow = false;
 
         try {
@@ -107,6 +109,19 @@ class InheritanceTest {
         // --end-->
 
         assertEquals(expected.get(), willThrow);
+    }
+
+    @Test
+    void should_use_caution_when_dealing_with_array_type_() {
+        DerivedFromSuperClassWithDefaultConstructor[] array = new DerivedFromSuperClassWithDefaultConstructor[4];
+        SuperClassWithDefaultConstructor[] arraySuper = (SuperClassWithDefaultConstructor[])array;
+        boolean flag = false;
+        try {
+            arraySuper[0] = new SuperClassWithDefaultConstructor();
+        }catch (Exception e){
+            flag = true;
+        }
+        assertTrue(flag);
     }
 
     @SuppressWarnings("UnnecessaryLocalVariable")
@@ -139,7 +154,6 @@ class InheritanceTest {
     @Test
     void should_use_instance_of_to_determine_inheritance_relationship() {
         NestedDerivedClassWithName nested = new NestedDerivedClassWithName();
-
         // TODO: please modify the following code to pass the test
         // <--start
         final Optional<Boolean> expectedResult1 = Optional.of(true);
@@ -235,11 +249,23 @@ class InheritanceTest {
         assertNotEquals(person.hashCode(), different2.hashCode());
         assertEquals(person.hashCode(), samePerson.hashCode());
     }
+    @Test
+    void should_test_array_subClass_isNot_subClass_Of_array_superClass() {
+        DerivedFromSuperClassWithDefaultConstructor[] array = new DerivedFromSuperClassWithDefaultConstructor[4];
+        SuperClassWithDefaultConstructor[] arrayType = new SuperClassWithDefaultConstructor[4];
+        boolean flag = array.getClass().isAssignableFrom(arrayType.getClass());
+        assertFalse(flag);
+    }
+
+    @Test
+    void should_test_array_subClass_isNot_subClass_Of_array_superClass_another_way() {
+
+    }
 }
 
 /*
  * - If `Derived` derives from `Base` and `Base` class contains one parameterized constructor, then do you think we
- *   should explicitly call constructor in `Base` from `Derived` class? I do not know
+ *   should explicitly call constructor in `Base` from `Derived` class? Y
  * - Why you should override hashCode while overriding equals?  equal objects must have equal hash codes
  * - How to write a perfect equals method?
  */

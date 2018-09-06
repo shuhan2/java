@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +38,7 @@ class ReflectionTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String expected = Employee.class.getName();
+        final String expected = "com.cultivation.javaBasic.util.Employee";
         // --end-->
 
         assertEquals(expected, employeeClass.getName());
@@ -56,24 +58,20 @@ class ReflectionTest {
     }
 
     @SuppressWarnings({"ConstantConditions", "unused"})
+//    Returns an array containing {@code Method} objects reflecting all the
+//     * declared methods of the class or interface represented by this {@code
+//     * Class} object, including public, protected, default (package)
+//            * access, and private methods, but excluding inherited methods.
     @Test
     void should_be_able_to_print_all_static_methods_of_double() {
         Class<Double> doubleClass = Double.class;
 
         // TODO: please get all public static declared methods of Double. Sorted in an ascending order
         // <--start
-        Method[] methods= doubleClass.getDeclaredMethods();
-        String methodString = "";
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < methods.length; i++){
-            if (java.lang.reflect.Modifier.isStatic(methods[i].getModifiers())) {
-            methodString = methods[i].getName();
-                result.add(methodString);
-            }
-        }
-        Collections.sort(result);
-
-        String[] publicStaticMethods = result.toArray(new String[0]);
+        String[] publicStaticMethods = Arrays.stream(doubleClass.getDeclaredMethods())
+                                .filter(method->Modifier.isPublic(method.getModifiers())
+                                        && Modifier.isStatic(method.getModifiers()))
+                                .map(method ->method.getName()).toArray(String[]::new);
         // --end-->
 
         final String[] expected = {
@@ -93,7 +91,8 @@ class ReflectionTest {
 
         // TODO: please get the value of `getTitle` method using reflection. No casting to Employee is allowed.
         // <--start
-        Object result = ((Employee) employee).getTitle();
+        Object result =Employee.class.getMethod("getTitle").invoke(employee);
+
         // --end-->
 
         assertEquals("Employee", result);
@@ -106,7 +105,10 @@ class ReflectionTest {
 
         // TODO: please get the class of array item `employees`
         // <--start
-        Class<?> itemClass = employees.getClass();
+
+        Class<?> itemClass = employees.getClass().getComponentType();
+        //父类数组和子类数组是没有继承关系的
+
         // --end-->
 
         assertEquals(Employee.class, itemClass);
@@ -115,32 +117,33 @@ class ReflectionTest {
     @SuppressWarnings({"ConstantConditions", "unused"})
     @Test
     void should_be_able_to_get_the_methods_who_contains_MyAnnotation_annotation() {
-        Class<MethodWithAnnotation> theClass = MethodWithAnnotation.class;
+       Class<MethodWithSomeAnnotation> methodWithSomeAnnotation= MethodWithSomeAnnotation.class;
 
-        // TODO: please get the methods who contains MyAnnotation annotation.
-        // <--start
-        Method[] methods = theClass.getDeclaredMethods();
-        List<String> methodString = new ArrayList<>();
-        for (Method method  : methods){
-            Annotation[] annotations =  method.getAnnotations();
-            for (Annotation annotation : annotations){
-                if (annotation instanceof MyAnnotation){
-                    methodString.add(method.getName());
-                }
-            }
+       List<String> list = new ArrayList<>();
+       Method[] methods = methodWithSomeAnnotation.getDeclaredMethods();
+       for (Method method : methods) {
+           Annotation[] annotations = method.getDeclaredAnnotations();
+           for (Annotation annotation : annotations) {
+               if (annotation.annotationType() == MyAnnotation.class){
+                   list.add(method.getName());
+               }
+           }
+       }
+       String[] expectMethod = list.toArray(new String[list.size()]);
+//        String[] expectMethod = Arrays.stream(methods).filter()
 
-        }
-        String[] methodsContainsAnnotations = methodString.toArray(new String[0]);
-        // --end-->
-
-        assertArrayEquals(new String[] {"theMethod"}, methodsContainsAnnotations);
+       assertArrayEquals(new String[]{"testMethod"}, expectMethod);
     }
+
+
 }
+
 
 /*
  * - What is the class name of array type?Object
  * - How to compare 2 classes? Type and value
  * - What if the class does not contain a default constructor when you call `newInstance()`?
+ * Call Class.getConstructor() and then Constructor.newInstance()
  * - What is source only annotation? Can we get source only annotations via reflection?
  *
  * //不写入class文件中

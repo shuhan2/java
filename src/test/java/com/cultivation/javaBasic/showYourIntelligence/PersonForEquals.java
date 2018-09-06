@@ -36,12 +36,20 @@ public class PersonForEquals {
     public boolean equals(Object obj) {
         // TODO: please modify the following code to pass the test
         // <--start
-        if (obj == null) return false;
-        if (!(obj instanceof PersonForEquals)){
-            return false;
-        }
-         return ((PersonForEquals) obj).name == this.name && ((PersonForEquals) obj).getYearOfBirth() == this.getYearOfBirth();
 
+       if (obj == null) {
+           return false;
+       }
+       if (obj == this) {
+           return true;
+       }
+       if (obj.getClass() != this.getClass()) {
+           return false;
+       }
+        String objName = ((PersonForEquals) obj).getName();
+        short objYearOfBirth = ((PersonForEquals) obj).getYearOfBirth();
+        return this.getName() == objName
+                && this.getYearOfBirth() == objYearOfBirth;
        // throw new NotImplementedException();
         // --end-->
     }

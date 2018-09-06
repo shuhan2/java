@@ -138,7 +138,7 @@ class ObjectTest {
         // TODO: please modify the following code to pass the test. You should write the result directly.
         // <--start
 
-        final String expected = "methodWithTwoParameters(String, Integer)";
+        final String expected = "methodWithTwoParameters(String, int)";
         // --end-->
 
         assertEquals(expected, actual);
