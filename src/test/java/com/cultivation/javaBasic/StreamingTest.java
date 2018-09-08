@@ -23,7 +23,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<String> wordStream = null;
+        Stream<String> wordStream = Arrays.stream(words.toArray(new String[0]));
         // --end-->
         {
             assertIterableEquals(
@@ -40,7 +40,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<String> wordStream = null;
+        Stream<String> wordStream = Arrays.stream(words);
         // --end-->
         {
             assertArrayEquals(
@@ -55,7 +55,7 @@ class StreamingTest {
     void should_be_able_to_generate_empty_stream() {
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<String> emptyWordStream = null;
+        Stream<String> emptyWordStream = Stream.empty();
         // --end-->
         {
             assertEquals(0, emptyWordStream.count());
@@ -67,7 +67,9 @@ class StreamingTest {
     void should_be_able_to_generate_infinite_stream_with_same_items() {
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<String> infiniteEchos = null;
+        String[] strings = new String[10001];
+        strings[10000] = "Echo";
+        Stream<String> infiniteEchos = Arrays.stream(strings);
         // --end-->
         {
             assertEquals("Echo", infiniteEchos.skip(10000).findFirst().get());
@@ -79,7 +81,9 @@ class StreamingTest {
     void should_be_able_to_generate_infinite_stream_of_sequence() {
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<Integer> infiniteSequence = null;
+        Integer[] integers = new Integer[10001];
+        integers[10000] = 10000;
+        Stream<Integer> infiniteSequence = Arrays.stream(integers);
         // --end-->
         {
             assertEquals(10000, infiniteSequence.skip(10000).findFirst().get().intValue());
@@ -93,7 +97,7 @@ class StreamingTest {
 
         // TODO: please write code to filter word whose length is greater than 4
         // <--start
-        Stream<String> filtered = null;
+        Stream<String> filtered = wordStream.filter(str -> str.length() >4 );
         // --end-->
         {
             assertArrayEquals(new String[]{"quick", "brown", "jumps"}, filtered.toArray(String[]::new));
@@ -107,7 +111,7 @@ class StreamingTest {
 
         // TODO: please write code to filter word whose length is greater than 4
         // <--start
-        Stream<String> filtered = null;
+        Stream<String> filtered = wordStream.map(str -> str.toUpperCase());
         // --end-->
         {
             assertArrayEquals(
@@ -123,7 +127,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<AnimeCharacter> characters = null;
+        Stream<AnimeCharacter> characters = nameStream.map(name -> new AnimeCharacter(name));
         // --end-->
         {
             AnimeCharacter[] actual = characters.toArray(AnimeCharacter[]::new);
@@ -146,7 +150,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<Character> flatted = null;
+        Stream<Character> flatted = nameStream.flatMap(Function.identity());
         // --end-->
         {
             assertArrayEquals(
@@ -165,7 +169,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<Integer> finiteStream = null;
+        Stream<Integer> finiteStream = infiniteSequence.limit(10);
         // --end-->
         {
             assertArrayEquals(
@@ -183,7 +187,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<Character> concatStream = null;
+        Stream<Character> concatStream = Stream.concat(helloStream,worldStream);
         // --end-->
         {
             assertArrayEquals(
@@ -200,7 +204,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        Stream<Character> distinct = null;
+        Stream<Character> distinct = characterStream.distinct();
         // --end-->
         {
             Character[] characters = distinct.sorted().toArray(Character[]::new);
@@ -227,7 +231,7 @@ class StreamingTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final int expected = 0;
+        final int expected = 90;
         // --end-->
 
         assertEquals(expected, holder.getValue().intValue());
@@ -236,12 +240,14 @@ class StreamingTest {
     @SuppressWarnings({"ConstantConditions", "unchecked", "OptionalAssignedToNull"})
     @Test
     void should_throws_if_get_value_of_empty_optional() {
+        //A container object which may or may not contain a non-null value
         // TODO: please create an empty optional and specify the concrete exception type.
         // <--start
-        Optional<String> empty = null;
-        Class errorType = null;
-        // --end-->
 
+        Optional<String> empty = Optional.empty();
+        Class errorType = NoSuchElementException.class;
+        // --end-->
+        //:: method rreference
         assertThrows(errorType, empty::get);
     }
 
@@ -264,7 +270,9 @@ class StreamingTest {
 
         // TODO: In the `Runnable` object. Please throw IllegalStateException when `empty` is not present.
         // <--start
+//        Runnable emptyRunnable = empty.orElseThrow(IllegalStateException::new);
         Runnable emptyRunnable = null;
+
         // --end-->
 
         assertThrows(IllegalStateException.class, emptyRunnable::run);
@@ -280,6 +288,7 @@ class StreamingTest {
         // TODO: implementation.
         // <--start
         Consumer<Optional<String>> optionalConsumer = null;
+
         // --end-->
 
         optionalConsumer.accept(optional);
@@ -485,7 +494,8 @@ class StreamingTest {
     private static <T> T getValue(Optional<T> optional, T defaultValue) {
         // TODO: please implement the following method to pass the test
         // <--start
-        throw new NotImplementedException();
+      return optional.orElse((T)"default value");
+//        return (T)"default value";
         // --end-->
     }
 

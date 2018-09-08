@@ -1,11 +1,13 @@
 package com.cultivation.javaBasic.showYourIntelligence;
 
+import com.cultivation.javaBasic.util.Person;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
-public class PersonForEquals {
+public class PersonForEquals implements Comparable<PersonForEquals> {
     private final String name;
     private final short yearOfBirth;
 
@@ -64,5 +66,23 @@ public class PersonForEquals {
         return result;
 //        throw new NotImplementedException();
         // --end-->
+    }
+
+    @Override
+    public int compareTo(PersonForEquals person) {
+        if (person == null){
+            throw new NullPointerException();
+        }
+        int nameCompare = this.name.compareTo(person.getName());
+        if (nameCompare != 0){
+            return nameCompare;
+        }else {
+            if (this.yearOfBirth == person.getYearOfBirth()){
+                return 0;
+            }else {
+                return this.yearOfBirth - person.yearOfBirth > 0 ? 1 : -1;
+            }
+        }
+
     }
 }

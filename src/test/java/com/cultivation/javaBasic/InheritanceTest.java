@@ -249,6 +249,20 @@ class InheritanceTest {
         assertNotEquals(person.hashCode(), different2.hashCode());
         assertEquals(person.hashCode(), samePerson.hashCode());
     }
+    private PersonForEquals[] should_return_array_sort(){
+        PersonForEquals james1 = new PersonForEquals("James",(short)1990);
+        PersonForEquals james2 = new PersonForEquals("James",(short)1992);
+        PersonForEquals alice = new PersonForEquals("Alice",(short)1990);
+        PersonForEquals[] array = new PersonForEquals[3];
+
+        return null;
+    }
+    @Test
+    void should_test_array_sort() {
+//        James,Alice
+
+    }
+
     @Test
     void should_test_array_subClass_isNot_subClass_Of_array_superClass() {
         DerivedFromSuperClassWithDefaultConstructor[] array = new DerivedFromSuperClassWithDefaultConstructor[4];

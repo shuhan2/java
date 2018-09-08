@@ -317,27 +317,15 @@ class StringTest {
     }
 
     private int[] getCodePointsFromString(String withSurrogatePairs) {
-        // TODO: please implement the method to the pass the test
-        // <--start
-        //汉字两个字节，复杂的需要四个字节
-        //return withSurrogatePairs.codePoints().toArray();
-        //todo  for circle
         int length = withSurrogatePairs.codePointCount(0,withSurrogatePairs.length());
-        int[] result = new int[length];
-        int index =0;
-        for (int i = 0; i <= length; i++) {
-            result[ index++] = withSurrogatePairs.codePointAt(i);
-            if (withSurrogatePairs.codePointAt(i) > 65536) {
-                i++;
-            }
+        int[] result =  new int[length];
+        int codePointIndex = 0;
+        for (int charIndex = 0; charIndex < withSurrogatePairs.length();
+             charIndex += Character.charCount(withSurrogatePairs.codePointAt(charIndex))) {
+            result[codePointIndex++] = withSurrogatePairs.codePointAt(charIndex);
         }
-
         return result;
-        // --end-->
     }
-
-
-
     /*
      * - List other string format conversion chars.
      *   * d - decimal integer           1

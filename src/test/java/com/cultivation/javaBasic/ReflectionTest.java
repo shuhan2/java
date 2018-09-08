@@ -1,5 +1,6 @@
 package com.cultivation.javaBasic;
 
+import com.cultivation.javaBasic.showYourIntelligence.PersonForEquals;
 import com.cultivation.javaBasic.util.Employee;
 import com.cultivation.javaBasic.util.MethodWithAnnotation;
 import com.cultivation.javaBasic.util.MyAnnotation;

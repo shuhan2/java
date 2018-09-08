@@ -216,6 +216,7 @@ class ObjectTest {
         object = new Object();
         return object;
     }
+
 }
 
 /*
