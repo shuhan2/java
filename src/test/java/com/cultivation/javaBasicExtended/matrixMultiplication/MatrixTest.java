@@ -1,6 +1,7 @@
 package com.cultivation.javaBasicExtended.matrixMultiplication;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,7 +10,12 @@ class MatrixTest {
     @Test
     void should_throws_if_matrix_array_is_null() {
         IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class, () -> new Matrix(null));
+            IllegalArgumentException.class, new Executable() {
+                    @Override
+                    public void execute() throws Throwable {
+                        new Matrix(null);
+                    }
+                });
         assertEquals("Raw matrix is null", exception.getMessage());
     }
 
