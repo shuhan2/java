@@ -49,12 +49,7 @@ class LambdaTest {
     void should_bind_to_constructor() {
         // TODO: please bind lambda to constructor of ArrayList<Integer>
         // <--start
-        GenericFunc<ArrayList<Integer>> lambda = new GenericFunc<ArrayList<Integer>>() {
-            @Override
-            public ArrayList<Integer> getValue() {
-                return new ArrayList<>();
-            }
-        };
+        GenericFunc<ArrayList<Integer>> lambda = () -> new ArrayList<>();
         // --end-->
 
         ArrayList<Integer> value = lambda.getValue();

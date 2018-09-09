@@ -172,17 +172,17 @@ class ObjectTest {
         assertArrayEquals(expected, logs);
     }
 
-//    @Test
-//    void should_get_message_of_var_length_parameters() {
-//        final String message = getMessageOfVarLengthParameters(1, 2, 3);
-//
-//        // TODO: please modify the following code to pass the test
-//        // <--start
-//        final String expected = "1\n2\n3\n";
-//        // --end-->
-//
-//        assertEquals(expected, message);
-//    }
+    @Test
+    void should_get_message_of_var_length_parameters() {
+        final String message = getMessageOfVarLengthParameters(new Object[] {1, 2, 3});
+
+        // TODO: please modify the following code to pass the test
+        // <--start
+        final String expected = "1\n2\n3\n";
+        // --end-->
+
+        assertEquals(expected, message);
+    }
 
 
     @SuppressWarnings("RedundantArrayCreation")
