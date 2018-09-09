@@ -1,3 +1,7 @@
+##20180904
+#####IntegerTest && FloatingTypeTest && CharTypeTest 
+####basic
+java整数类型有byte,short,int,long,运算过程中计算的是数字的补码,首位是符号位,char都是java的基本数据类型,默认值是'\u0000'(16位)
 ####1.>>>  (unsigned ) && >>(signed).
 
 ``` 
@@ -44,14 +48,18 @@ eg:0x80000000 == -0x80000000. (补码是其本身)
 注:从下向上转可以隐式转换,从上向下需要显示转换
 
 ####6.byte && bite
-1 byte == 8 bite.  
+1 byte = 8 bite.  
 int:4byte
 
-#####7补充   
+#####7.补充   
 循环不可能发生栈溢出，栈溢出可能发生在函数调用过深（递归）
 
 
-###20180905
+##20180905
+####BooleanOperatorsTest && ArrayTest && StringTest
+####basic 
+boolean 是java的基本数据类型,默认值是false,array 和 string都是对象.
+
 ####1.& | ~ priority.  
 ~ > & > |   
 command + shift +option + down: exchange two parameters.
@@ -84,21 +92,21 @@ explanation:final表示的是绑定关系不变，object里面的内容可变。
 #####4.boolean(method里面和file里面不一样)
 1.如果在一个方法里面，
 声明一个boolean值但没有初始化，它的值不是false，eg:    
-```
+<pre>
   boolean test;
   assertFalse(test);
-```
+</pre>
 
 上面这段代码会报错，因为test没有初始化   
  
 2.如果是filed，
 声明boolean值但没有初始化，它的值是false(有初始值)，
 
-其他的初始变量都是一样的情况
+其他的原始变量都是一样的情况
 
 #####5.boolean数组
 在方法里面，数组里面的每个值有初始值
-####6形式参数&&实际参数
+#####6形式参数&&实际参数
 argument 实际参数。  
 parameter 形式参数        
 
@@ -112,23 +120,25 @@ private static void tryingToUpdateState(SimpleObjectWithInternalState instance) 
 调用函数里面的instance是实际参数，函数参数里面的instance是形式参数
 
 ####7.函数传参
-传值
-传引用
+1.传值:参数是基本数据类型。   
+2.传引用:参数是object
 
 ####8. …
 可变长参数
 
 ####9.unicode&&codepoint&&utf-8
 
-codepoint 是四byte，整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示
+codepoint 是四byte，整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
 
-####10.补充
-codepoint不止一个char 和 两个char两种情况
-
-###20180906
+##20180906
+####InheritanceTest && ReflectionTest
+####basic
+inheritance,多个子类可以继承一个superclass,一个类只能继承一个superclass,继承链不能跨级调用
+reflection,可以利用反射取到Class内部的信息,用来做验证.
 ####1. .class Vs Class
-.class:类的描述信息的实例(Object)    
-Class:类
+.class:类的描述信息的 例(Object)    
+Class:类    
+注:简历和人的关系
 ####2.static
 is shared by all the instances
 ####3.实例化过程
@@ -141,8 +151,8 @@ this:调用当前对象的实例
 ####5.堆，栈
 common:ram.   
 difference<br>
-stack:value
-heap:address
+stack:value      
+heap:address     
 todo :jvm
 
 ####6.reflection
@@ -168,9 +178,10 @@ eg:
     }
 </pre>
 ####7.annotion
-注解是告诉编译器一些信息，删掉不会对运行产生实质性的影响
+注解是告诉编译器一些信息，删掉不会对运行产生实质性的影响类型(spring的注解是用反射实现的)
+
 ####8.补充
-jvm
+todo:jvm
 
 ###20180907
 ####1.codepoint
@@ -186,12 +197,11 @@ private int[] getCodePointsFromString(String withSurrogatePairs) {
         return result;
     }
 </pre>
-notice:codepoint不止一个char或两个char两种size;
-####2.equal
-参考源码,以Object.equal(Object object)为例,层层嵌套之后,
-<pre>
 
-</pre>
+注意:这里不能直接index加1,应该加上字符的size.
+
+####2.equal    
+参考源码,以Object.equal(Object object)为例,层层嵌套之后,
 判断完null之后,最后调用的是自己重写的equal方法,    
 重写equal方法的时候,一定要重写hashcode方法
 
@@ -226,12 +236,83 @@ GenericFunc<ArrayList<Integer>> lambda = () -> new ArrayList<>();
 </pre>
 
 ####6.closure
-函数加运行环境(和执行没关系),匿名函数类可以看作一个闭包
-####7.interface
-<pre>
+函数加运行环境(定义环境),匿名函数类可以看作一个闭包
 
-</pre>
 
-####8.homework
-summary.md,matrixMultiplication,reverseString,postMachine,innerClass,exceptionClass,
+##shortcuts
+#####1.插入自定义代码块
+cmd + j     
+#####2.跳转到类型声明处？？？
+cmd + option + B
+#####3.删除到单词的开头
+option + del 
+#####4.添加书签
+option + f3
+#####5.跳到下一个错误
+option + f2
+#####6.提取参数
+cmd + option + p
+#####7.调用层级结构
+control + option + h
+#####8.恢复程序运行，如果该断点下面代码还有断点
+cmd + option + r&&f9
+#####9.切换断点
+cmd + f8
+#####10.左右切换代开的tab页
+ctr + tab
+#####11.打开相应的
+cmd + 1/2/3/4
+#####12.连续选中代码块
+option + up
+#####13.切换全凭模式
+ctr + cmd + f
+#####14.优化import
+control + option + O
+#####15.自动缩进行
+ctr + option + i
+#####16.包围代码
+cmd + option + t
+
+#####17.注释
+cmd + /
+
+#####18.自动结束代码
+cmd + shift +enter
+ 
+####19 safe delete
+ Command + Delete 
+ 
+#####20.编译选择的文件
+Command + Shift + F9
+
+#####21覆盖方法
+ctr + o
+
+#####22查找所有类型文件
+Command + Shift + O
+
+#####23跳转到声明处
+cmd +  B
+
+#####24显示方法层次结构
+cmd + shift + H/cmd + f12
+
+#####25前往当前光标所在方法的父类的方法 / 接口定义
+Command + U
+
+#####26恢复程序运行，如果该断点下面代码还有断点则停在下一个断点上
+Command + Option + R
+
+#####27打开项目结构对话框
+cmd +;
+
+cmd + shift +u
+#####27基本代码补全！！！！
+control + space
+
+#####28.切换文件窗口
+cmd + shift +[/cmd + shift +]
+
+
+ 
 

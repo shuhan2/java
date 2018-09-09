@@ -10,7 +10,6 @@ public class NameImpl implements WithName, Person {
         // TODO: please modify the following code to pass the test
         // <--start
         return Person.super.getName();
-//        throw new NotImplementedException();
         // --end-->
     }
 }
