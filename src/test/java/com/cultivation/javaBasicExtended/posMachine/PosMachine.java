@@ -11,14 +11,31 @@ public class PosMachine {
     public void readDataSource(Reader reader) throws IOException {
         // TODO: please implement the following method to pass the test
         // <--start
-        throw new NotImplementedException();
+        reader.read();
         // --end-->
     }
 
     public String printReceipt(String barcodeContent) throws IOException {
         // TODO: please implement the following method to pass the test
         // <--start
-        throw new NotImplementedException();
+        String line = System.lineSeparator();
+        String dottedLine = "------------------------------------------------------------";
+        String price = "Price: ";
+        StringBuilder string = new StringBuilder("Receipts");
+        if (barcodeContent == null || barcodeContent == "[]") {
+            return string.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
+                    append("Price: ").append(0).append(line).toString();
+        }
+        else if (barcodeContent.length() > 0){
+            return string.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
+                    append("Price: ").append(barcodeContent).append(line).toString();
+
+        }
+        else{
+            return string.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
+                    append("Price: ").append(barcodeContent).append(line).toString();
+
+        }
         // --end-->
     }
 }
