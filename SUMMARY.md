@@ -1,3 +1,4 @@
+
 # summary-0909
 ## 20180904
 #### IntegerTest && FloatingTypeTest && CharTypeTest 
@@ -33,38 +34,38 @@ assertEquals(0x40000004,0x80000008 >>> 1);
         }
     }
 ```
-####3.MAX_VALUE and MIN_VALUE
+#### 3.MAX_VALUE and MIN_VALUE
 ```
 Integer.MAX_VALUE = 0x80000000;
 Integer.MIN_VALUE = 0x7fffffff;
 Integer.MIN_VALUE = Integer.MAX_VALUE + 1;
 ```
-####4.补码. 
+#### 4.补码. 
 正数的补码和原码相等，负数的补码在其原码的基础上, 符号位不变,    其余各位取反, 最后+1. 写的时候都是写的数的补码      
 eg:0x80000000 == -0x80000000. (补码是其本身)    
  
-####5.整数类型
+#### 5.整数类型
  byte(8),short(16),int(32),long(64),float(32),double(64).      
 注:从下向上转可以隐式转换,从上向下需要显示转换
 
-####6.byte && bite
+#### 6.byte && bite
 1 byte = 8 bite.  
 int:4byte
 
-#####7.补充   
+##### 7.补充   
 循环不可能发生栈溢出，栈溢出可能发生在函数调用过深（递归）
 
 
-##20180905
-####BooleanOperatorsTest && ArrayTest && StringTest
-####basic 
+## 20180905
+#### BooleanOperatorsTest && ArrayTest && StringTest
+#### basic 
 boolean 是java的基本数据类型,默认值是false,array 和 string都是对象.
 
-####1.& | ~ priority.  
+#### 1.& | ~ priority.  
 ~ > & > |   
 command + shift +option + down: exchange two parameters.
 
-####2.default value
+#### 2.default value
 
 | Data Type	   | Default Value (for fields)          |
 | ------------- |:-------------:| 
@@ -77,10 +78,10 @@ command + shift +option + down: exchange two parameters.
 |String (or any object) | null|
 | boolean | false|
 
-####3.String
+#### 3.String
 String 是一个object/array（具体可参考源码），在没有运行构造函数之前，它的值时null(对象的初始值)
 
-####4.final
+#### 4.final
 eg
 
 ```
@@ -89,7 +90,7 @@ originalString[0] = 6;
 ```
 
 explanation:final表示的是绑定关系不变，object里面的内容可变。
-#####4.boolean(method里面和file里面不一样)
+##### 4.boolean(method里面和file里面不一样)
 1.如果在一个方法里面，
 声明一个boolean值但没有初始化，它的值不是false，eg:    
 <pre>
@@ -104,9 +105,9 @@ explanation:final表示的是绑定关系不变，object里面的内容可变。
 
 其他的原始变量都是一样的情况
 
-#####5.boolean数组
+##### 5.boolean数组
 在方法里面，数组里面的每个值有初始值
-#####6形式参数&&实际参数
+##### 6.形式参数&&实际参数
 argument 实际参数。  
 parameter 形式参数        
 
@@ -119,44 +120,44 @@ private static void tryingToUpdateState(SimpleObjectWithInternalState instance) 
 ```
 调用函数里面的instance是实际参数，函数参数里面的instance是形式参数
 
-####7.函数传参
+#### 7.函数传参
 1.传值:参数是基本数据类型。   
 2.传引用:参数是object
 
-####8. …
+#### 8. …
 可变长参数
 
-####9.unicode&&codepoint&&utf-8
+#### 9.unicode&&codepoint&&utf-8
 
 codepoint 是四byte，整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
 
-##20180906
-####InheritanceTest && ReflectionTest
-####basic
+## 20180906
+#### InheritanceTest && ReflectionTest
+#### basic
 inheritance,多个子类可以继承一个superclass,一个类只能继承一个superclass,继承链不能跨级调用
 reflection,可以利用反射取到Class内部的信息,用来做验证.
-####1. .class Vs Class
+#### 1. .class Vs Class
 .class:类的描述信息的 例(Object)    
 Class:类    
 注:简历和人的关系
-####2.static
+#### 2.static
 is shared by all the instances
-####3.实例化
+#### 3.实例化
 如果没有构造函数，在实例的过程中系统会自动创建一个无参的构造函数
 
-####4.super,this
+#### 4.super,this
 super:调用父类的实例，    
 this:调用当前对象的实例   
 两个关键字都只能用在方法的第一行（只能用一次，且不能同时出现） 
 
-####5.堆，栈
+#### 5.堆，栈
 common:ram.   
 difference<br>
 stack:value      
 heap:address     
 todo :jvm
 
-####6.reflection
+#### 6.reflection
 反射可以取到类内部的信息，可以用这个特性来进行测试
 eg:
 <pre>
@@ -178,14 +179,14 @@ eg:
         assertArrayEquals(expected, publicStaticMethods);
     }
 </pre>
-####7.annotion
+#### 7.annotion
 注解是告诉编译器一些信息，删掉不会对运行产生实质性的影响类型(spring的注解是用反射实现的)
 
-####8.补充
+#### 8.补充
 todo:jvm
 
-###20180907
-####1.codepoint
+## 20180907
+#### 1.codepoint
 <pre>
 private int[] getCodePointsFromString(String withSurrogatePairs) {
         int length = withSurrogatePairs.codePointCount(0,withSurrogatePairs.length());
@@ -201,12 +202,12 @@ private int[] getCodePointsFromString(String withSurrogatePairs) {
 
 注意:这里不能直接index加1,应该加上字符的size.
 
-####2.equal    
+#### 2.equal    
 参考源码,以Object.equal(Object object)为例,层层嵌套之后,
 判断完null之后,最后调用的是自己重写的equal方法,    
 重写equal方法的时候,一定要重写hashcode方法
 
-####3.interface
+#### 3.interface
 1)multi implemen.  
 2)No self implement
 3)except abstract,static or default.  
@@ -220,8 +221,8 @@ private int[] getCodePointsFromString(String withSurrogatePairs) {
 11)to be abstract.   
 12)to be package-private
 13)can be type能作为一种类型去使用
-####4.Comparable
-####5.匿名类
+#### 4.Comparable
+#### 5.匿名类
 功能式接口，里面只有一个抽象函数，实例化的实例可以写成匿名类的样式，
 <pre> 
 GenericFunc<ArrayList<Integer>> lambda = new GenericFunc<ArrayList<Integer>>() {
@@ -236,7 +237,7 @@ GenericFunc<ArrayList<Integer>> lambda = new GenericFunc<ArrayList<Integer>>() {
 GenericFunc<ArrayList<Integer>> lambda = () -> new ArrayList<>();
 </pre>
 
-####6.closure
+#### 6.closure
 函数加运行环境(定义环境),匿名函数类可以看作一个闭包
 
 
