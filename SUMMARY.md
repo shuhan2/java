@@ -1,17 +1,16 @@
 #summary-0909
 ##20180904
-#####IntegerTest && FloatingTypeTest && CharTypeTest 
+####IntegerTest && FloatingTypeTest && CharTypeTest 
 ####basic
 java整数类型有byte,short,int,long,运算过程中计算的是数字的补码,首位是符号位,char都是java的基本数据类型,默认值是'\u0000'(16位)
 ####1.>>>  (unsigned ) && >>(signed).
-
 ``` 
 assertEquals(-Math.pow(2,31),0x80000000 >>> 32)    
 ```
 移到尽头会移回去    
 10000……1000     
 unsigned 01000……0100     （>>）(原码)      
-signed  10000……0100    （>>>）.  （原码）
+signed  10000……0100    （>>>） （原码）
 ```
 assertEquals(0xC0000004,0x80000008 >> 1);       
 assertEquals(0x40000004,0x80000008 >>> 1);
@@ -142,7 +141,8 @@ Class:类
 注:简历和人的关系
 ####2.static
 is shared by all the instances
-####3.实例化过程
+####3.实例化
+如果没有构造函数，在实例的过程中系统会自动创建一个无参的构造函数
 
 ####4.super,this
 super:调用父类的实例，    
