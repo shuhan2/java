@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ExceptionTest {
     @Test
@@ -43,7 +41,7 @@ class ExceptionTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final int expectedResult = Integer.MAX_VALUE;
+        final int expectedResult = 0;
         // --end-->
 
         assertEquals(expectedResult, confusedResult);
@@ -60,7 +58,7 @@ class ExceptionTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final Optional<Boolean> expected = Optional.empty();
+        final Optional<Boolean> expected = Optional.of(true);
         // --end-->
 
         assertEquals(expected.get(), closableStateReference.isClosed());
@@ -81,7 +79,7 @@ class ExceptionTest {
 
         // TODO: please modify the following code to pass the test
         // <--start
-        final String[] expected = {};
+        final String[] expected = {"ClosableWithException.close","ClosableWithoutException.close"};
         // --end-->
 
         assertArrayEquals(
@@ -110,14 +108,18 @@ class ExceptionTest {
     }
 }
 
-/*
+/*//火盆??
  * - Please draw the hibachi of `Throwable` and explain the main purpose for each type.
+ * throwable -> error  /(exception -> runtimeException)
+ * https://docs.oracle.com/javase/tutorial/essential/exceptions/throwing.html
  * - When do you have to declare a exception in the method signature.
+ * //argument error
  * - When you declare a class A in package PA, and A contains a method
  *   `callMeToDeath() throw FileNotFoundException`. Package PB imports PA and uses
  *   `PA.A.callMeToDeath()`. Both PA and PB are built and deployed. Now PA is updated and
  *   the method `callMeToDeath()` throws another exception. Can we just build and replace
  *   PA?
+ *   no
  * - Can you declare a method throws unchecked exceptions?
  * - If a super class method throws no checked exception, could a derived class override its
  *   method and throw checked exceptions?
