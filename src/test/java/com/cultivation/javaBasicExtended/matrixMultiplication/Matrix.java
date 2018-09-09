@@ -1,9 +1,7 @@
 package com.cultivation.javaBasicExtended.matrixMultiplication;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 class Matrix {
@@ -16,20 +14,54 @@ class Matrix {
     public Matrix(int[][] matrixArray) {
         // TODO: please implement the constructor of a matrix.
         // <--start
-        throw new NotImplementedException();
+        if (matrixArray == null) {
+            throw new IllegalArgumentException("Raw matrix is null");
+        }
+        if (matrixArray.length == 0) {
+            throw new IllegalArgumentException("Raw matrix contains 0 row");
+        }
+        for (int rowIndex = 0; rowIndex < matrixArray.length; rowIndex++) {
+
+            if (matrixArray[rowIndex] == null) {
+                throw new IllegalArgumentException("Raw matrix contains null row");
+            }else if (matrixArray[rowIndex].length == 0) {
+                throw new IllegalArgumentException("At least one row of raw matrix contains 0 column");
+            }else if (rowIndex > 0 && matrixArray[rowIndex - 1].length != matrixArray[rowIndex].length){
+                throw new IllegalArgumentException("Raw matrix is not rectangle");
+            }
+
+        }
+
+        storage = matrixArray;
         // --end-->
     }
 
     public static Matrix multiply(Matrix left, Matrix right) {
         // TODO: please implement the method to pass the tests.
         // <--start
-        throw new NotImplementedException();
+        if (left == null || right == null){
+            throw new IllegalArgumentException();
+        }else if (left.columns() != right.rows() ) {
+            throw new IllegalArgumentException();
+        }else {
+            return new Matrix(multi(left,right));
+        }
         // --end-->
     }
 
     // TODO: you can add some helper method if you like.
     // <--start
-
+    private static int[][] multi(Matrix left,Matrix right) {
+        int[][] matrix = new int[left.rows()][right.columns()];
+        for (int rowIndex = 0; rowIndex < left.rows(); rowIndex++) {
+            for (int columnIndex = 0; columnIndex < right.columns(); columnIndex++) {
+                for (int commonIndex = 0; commonIndex < left.columns(); commonIndex++) {
+                    matrix[rowIndex][columnIndex]  += left.storage[rowIndex][commonIndex] * right.storage[commonIndex][columnIndex];
+                }
+            }
+        }
+        return matrix;
+    }
     // --end->
 
     public int[] getRow(int rowIndex) {

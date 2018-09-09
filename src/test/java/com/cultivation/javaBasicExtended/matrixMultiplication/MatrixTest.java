@@ -10,12 +10,7 @@ class MatrixTest {
     @Test
     void should_throws_if_matrix_array_is_null() {
         IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class, new Executable() {
-                    @Override
-                    public void execute() throws Throwable {
-                        new Matrix(null);
-                    }
-                });
+            IllegalArgumentException.class, () -> new Matrix(null));
         assertEquals("Raw matrix is null", exception.getMessage());
     }
 
@@ -29,9 +24,9 @@ class MatrixTest {
     @Test
     void should_throws_if_matrix_array_contains_null_row() {
         IllegalArgumentException exception = assertThrows(
-            IllegalArgumentException.class, () -> new Matrix(new int[][] {
-                new int[3],
-                null
+            IllegalArgumentException.class, () -> new Matrix(new int[][]{
+                    new int[3],
+                    null
             }));
         assertEquals("Raw matrix contains null row", exception.getMessage());
     }
