@@ -90,7 +90,7 @@ originalString[0] = 6;
 ```
 
 explanation:final表示的是绑定关系不变，object里面的内容可变。
-##### 4.boolean(method里面和file里面不一样)
+#### 5.boolean(method里面和file里面不一样)
 1.如果在一个方法里面，
 声明一个boolean值但没有初始化，它的值不是false，eg:    
 <pre>
@@ -105,9 +105,9 @@ explanation:final表示的是绑定关系不变，object里面的内容可变。
 
 其他的原始变量都是一样的情况
 
-##### 5.boolean数组
+#### 6.boolean数组
 在方法里面，数组里面的每个值有初始值
-##### 6.形式参数&&实际参数
+#### 7.形式参数&&实际参数
 argument 实际参数。  
 parameter 形式参数        
 
@@ -120,14 +120,14 @@ private static void tryingToUpdateState(SimpleObjectWithInternalState instance) 
 ```
 调用函数里面的instance是实际参数，函数参数里面的instance是形式参数
 
-#### 7.函数传参
+#### 8.函数传参
 1.传值:参数是基本数据类型。   
 2.传引用:参数是object
 
-#### 8. …
+#### 9. …
 可变长参数
 
-#### 9.unicode&&codepoint&&utf-8
+#### 10.unicode && codePoint&& utf-8
 
 codepoint 是四byte，整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
 
@@ -179,14 +179,14 @@ eg:
         assertArrayEquals(expected, publicStaticMethods);
     }
 </pre>
-#### 7.annotion
+#### 7.annotation
 注解是告诉编译器一些信息，删掉不会对运行产生实质性的影响类型(spring的注解是用反射实现的)
 
 #### 8.补充
 todo:jvm
 
 ## 20180907
-#### 1.codepoint
+#### 1.codePoint
 <pre>
 private int[] getCodePointsFromString(String withSurrogatePairs) {
         int length = withSurrogatePairs.codePointCount(0,withSurrogatePairs.length());
@@ -208,8 +208,8 @@ private int[] getCodePointsFromString(String withSurrogatePairs) {
 重写equal方法的时候,一定要重写hashcode方法
 
 #### 3.interface
-1)multi implemen.  
-2)No self implement
+1)multi implement.  
+2)No self implement   
 3)except abstract,static or default.  
 4)field tobe static default final public.  
 5)No initialization.  
@@ -217,11 +217,12 @@ private int[] getCodePointsFromString(String withSurrogatePairs) {
 7)class implements an interface, the class must override all methods.   
 8)static method can not inherit.   
 9)method to be public
-10)default mmethod can inherite
+10)default method can inherit
 11)to be abstract.   
 12)to be package-private
 13)can be type能作为一种类型去使用
 #### 4.Comparable
+数组里面的每个子元素都要实现这个接口
 #### 5.匿名类
 功能式接口，里面只有一个抽象函数，实例化的实例可以写成匿名类的样式，
 <pre> 
