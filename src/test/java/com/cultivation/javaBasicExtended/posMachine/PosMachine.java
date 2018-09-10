@@ -11,6 +11,11 @@ public class PosMachine {
     public void readDataSource(Reader reader) throws IOException {
         // TODO: please implement the following method to pass the test
         // <--start
+        if (reader == null) {
+            throw new IllegalArgumentException();
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+
         reader.read();
         // --end-->
     }
@@ -21,18 +26,18 @@ public class PosMachine {
         String line = System.lineSeparator();
         String dottedLine = "------------------------------------------------------------";
         String price = "Price: ";
-        StringBuilder string = new StringBuilder("Receipts");
+        StringBuilder receipts = new StringBuilder("Receipts");
         if (barcodeContent == null || barcodeContent == "[]") {
-            return string.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
+            return receipts.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
                     append("Price: ").append(0).append(line).toString();
         }
         else if (barcodeContent.length() > 0){
-            return string.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
-                    append("Price: ").append(barcodeContent).append(line).toString();
+            return receipts.append(line).append(dottedLine).append(line).append(dottedLine).append(line).append(this).
+                    append("Price: ").append(this).append(line).toString();
 
         }
         else{
-            return string.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
+            return receipts.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
                     append("Price: ").append(barcodeContent).append(line).toString();
 
         }
