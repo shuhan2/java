@@ -1,9 +1,12 @@
 package com.cultivation.javaBasicExtended.posMachine;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Map;
 import java.util.Objects;
 
 @SuppressWarnings({"WeakerAccess", "unused", "RedundantThrows"})
@@ -15,8 +18,15 @@ public class PosMachine {
             throw new IllegalArgumentException();
         }
         StringBuilder stringBuilder = new StringBuilder();
+        int readCode;
 
-        reader.read();
+        if ((readCode = reader.read()) != -1){
+            stringBuilder.append(readCode);
+        }
+        String string = stringBuilder.toString();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, Product> results = objectMapper.readValue(string,
+                new TypeReference<Map<String, Product>>() {} );
         // --end-->
     }
 
@@ -27,7 +37,7 @@ public class PosMachine {
         String dottedLine = "------------------------------------------------------------";
         String price = "Price: ";
         StringBuilder receipts = new StringBuilder("Receipts");
-        if (barcodeContent == null || barcodeContent == "[]") {
+        if (barcodeContent == null || barcodeContent.equals("[]")) {
             return receipts.append(line).append(dottedLine).append(line).append(dottedLine).append(line).
                     append("Price: ").append(0).append(line).toString();
         }

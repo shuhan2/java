@@ -121,15 +121,13 @@ private static void tryingToUpdateState(SimpleObjectWithInternalState instance) 
 调用函数里面的instance是实际参数，函数参数里面的instance是形式参数
 
 #### 8.函数传参
-1.传值:参数是基本数据类型。   
-2.传引用:参数是object
-
+java中的函数传参是传值
 #### 9. …
 可变长参数
 
 #### 10.unicode && codePoint&& utf-8
 
-codepoint 是四byte，整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
+codePoint 是四byte，整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
 
 ## 20180906
 #### InheritanceTest && ReflectionTest
