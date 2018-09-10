@@ -137,7 +137,7 @@ codePoint 是整型，utf-8是unicode的一种实现方式,目前java 使用的�
 inheritance,多个子类可以继承一个superclass,一个类只能继承一个superclass,继承链不能跨级调用
 reflection,可以利用反射取到Class内部的信息,用来做验证.
 #### 1. .class Vs Class
-.class:类的描述信息的 例(Object)    
+.class:类的描述信息 例(Object)    
 Class:类    
 注:简历和人的关系
 #### 2.static
@@ -162,22 +162,22 @@ heap:address
 eg:
 <pre>
  @Test
-    void should_be_able_to_print_all_static_methods_of_double() {
-        Class<Double> doubleClass = Double.class;
-        // <--start
-        String[] publicStaticMethods = Arrays.stream(doubleClass.getDeclaredMethods())
-                                .filter(method->Modifier.isPublic(method.getModifiers())
-                                        && Modifier.isStatic(method.getModifiers()))
-                                .map(method ->method.getName()).toArray(String[]::new);
-        // --end-->
-        final String[] expected = {
-            "compare", "doubleToLongBits", "doubleToRawLongBits", "hashCode",
-            "isFinite", "isInfinite", "isNaN", "longBitsToDouble", "max",
-            "min", "parseDouble", "sum", "toHexString", "toString", "valueOf",
-            "valueOf"
-        };
-        assertArrayEquals(expected, publicStaticMethods);
-    }
+ void should_be_able_to_print_all_static_methods_of_double() {
+    Class<Double> doubleClass = Double.class;
+    // <--start
+    String[] publicStaticMethods = Arrays.stream(doubleClass.getDeclaredMethods())
+                            .filter(method->Modifier.isPublic(method.getModifiers())
+                                    && Modifier.isStatic(method.getModifiers()))
+                            .map(method ->method.getName()).toArray(String[]::new);
+    // --end-->
+    final String[] expected = {
+        "compare", "doubleToLongBits", "doubleToRawLongBits", "hashCode",
+        "isFinite", "isInfinite", "isNaN", "longBitsToDouble", "max",
+        "min", "parseDouble", "sum", "toHexString", "toString", "valueOf",
+        "valueOf"
+    };
+    assertArrayEquals(expected, publicStaticMethods);
+}
 </pre>
 #### 7.annotation
 注解是告诉编译器一些信息，删掉不会对运行产生实质性的影响类型(spring的注解是用反射实现的)
