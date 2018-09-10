@@ -129,7 +129,7 @@ private static void tryingToUpdateState(SimpleObjectWithInternalState instance) 
 
 #### 10.unicode && codePoint&& utf-8
 
-codePoint 是整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
+codePoint 是整型，utf-8是unicode的一种实现方式,目前java 使用的是utf-16
 
 ## 20180906
 #### InheritanceTest && ReflectionTest
@@ -208,18 +208,18 @@ private int[] getCodePointsFromString(String withSurrogatePairs) {
 重写equal方法的时候,一定要重写hashcode方法
 
 #### 3.interface
-1)multi implement.  
-2)No self implement   
-3)except abstract,static or default.  
-4)field tobe static default final public.  
-5)No initialization.  
-6)Only extends interface.    
+1)multi implement.可以多实现  
+2)No self implement 不能自我实现<br>
+3)except abstract,static or default. 除了abstract方法，java 8 中新增了static和default方法 <br>
+4)field tobe static default final public.     
+5)No initialization. 不能初始化    
+6)Only extends interface. 只能extends接口       
 7)class implements an interface, the class must override all methods.   
-8)static method can not inherit.   
-9)method to be public
-10)default method can inherit
-11)to be abstract.   
-12)to be package-private
+8)static method can not inherit. 静态方法不能继承      
+9)method to be public   
+10)default method can inherit default方法可以继承      
+11)to be abstract.<br>
+12)to be package-private        
 13)can be type能作为一种类型去使用
 #### 4.Comparable
 数组里面的每个子元素都要实现这个接口
