@@ -53,6 +53,7 @@ public class PosMachine {
         }
         // --end-->
     }
+
 }
 
 @SuppressWarnings("unused")

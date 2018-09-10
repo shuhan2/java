@@ -137,4 +137,8 @@ class PosMachineTest {
             "]";
         return new StringReader(sampleDatabase);
     }
+
+    @Test
+    void should_test_() {
+    }
 }

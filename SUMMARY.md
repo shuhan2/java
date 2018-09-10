@@ -152,11 +152,10 @@ this:调用当前对象的实例
 两个关键字都只能用在方法的第一行（只能用一次，且不能同时出现） 
 
 #### 5.堆，栈
-common:ram.   
+common:RAM存储数据.   
 difference<br>
 stack:value      
 heap:address     
-todo :jvm
 
 #### 6.reflection
 反射可以取到类内部的信息，可以用这个特性来进行测试
