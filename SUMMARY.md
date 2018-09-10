@@ -129,7 +129,7 @@ private static void tryingToUpdateState(SimpleObjectWithInternalState instance) 
 
 #### 10.unicode && codePoint&& utf-8
 
-codePoint 是四byte，整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
+codePoint 是整型，utf-8是unicode的一种实现方式，可以用1～4字节来表示,目前java 使用的是utf-16
 
 ## 20180906
 #### InheritanceTest && ReflectionTest
