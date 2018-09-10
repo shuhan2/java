@@ -189,15 +189,15 @@ todo:jvm
 #### 1.codePoint
 <pre>
 private int[] getCodePointsFromString(String withSurrogatePairs) {
-        int length = withSurrogatePairs.codePointCount(0,withSurrogatePairs.length());
-        int[] result =  new int[length];
-        int codePointIndex = 0;
-        for (int charIndex = 0; charIndex < withSurrogatePairs.length();
-             charIndex += Character.charCount(withSurrogatePairs.codePointAt(charIndex))) {
-            result[codePointIndex++] = withSurrogatePairs.codePointAt(charIndex);
-        }
-        return result;
+    int length = withSurrogatePairs.codePointCount(0,withSurrogatePairs.length());
+    int[] result =  new int[length];
+    int codePointIndex = 0;
+    for (int charIndex = 0; charIndex < withSurrogatePairs.length();
+         charIndex += Character.charCount(withSurrogatePairs.codePointAt(charIndex))) {
+        result[codePointIndex++] = withSurrogatePairs.codePointAt(charIndex);
     }
+    return result;
+}
 </pre>
 
 注意:这里不能直接index加1,应该加上字符的size.
